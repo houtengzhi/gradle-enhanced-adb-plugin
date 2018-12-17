@@ -1,0 +1,10 @@
+apply plugin: 'groovy'
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+}
+
+group='com.yechy.gradleplugin'
+version='1.0.0'
+
