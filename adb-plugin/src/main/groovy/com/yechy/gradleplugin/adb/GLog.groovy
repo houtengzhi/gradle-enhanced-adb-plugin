@@ -5,7 +5,7 @@ import org.gradle.api.logging.Logger
 class GLog {
 
     static final String TAG = "[DebugPlugin]"
-    static boolean debug = false
+    static boolean debug = true
 
     static def d(String message) {
         if (debug) {

@@ -1,5 +1,8 @@
-package com.yechy.gradleplugin.adb
+package com.yechy.gradleplugin.adb.task
 
+import com.yechy.gradleplugin.adb.Adb
+import com.yechy.gradleplugin.adb.ConfigExt
+import com.yechy.gradleplugin.adb.GLog
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.file.FileTree

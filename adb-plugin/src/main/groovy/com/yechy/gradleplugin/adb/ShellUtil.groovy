@@ -38,13 +38,13 @@ class ShellUtil {
 
         DataOutputStream os = null
         try {
-            GLog.d(TAG, "Exec command: " + command)
+            GLog.d("Exec command: ${command}")
             process = Runtime.getRuntime().exec(command)
             printShellMessageInNewThread(process.getInputStream(), "inputStream")
             printShellMessageInNewThread(process.getErrorStream(), "errorStream")
-            GLog.d(TAG, "waitFor")
+            GLog.d("waitFor")
             result = process.waitFor()
-            GLog.d(TAG, "waitFor return " + result)
+            GLog.d("waitFor return " + result)
 
         } catch (Exception e) {
             e.printStackTrace()
@@ -102,7 +102,7 @@ class ShellUtil {
     }
 
     private static void printShellMessageInNewThread(final InputStream inputStream, final String streamType) {
-        GLog.d(TAG, "printShellMessageInNewThread() " + streamType)
+        GLog.d("printShellMessageInNewThread() " + streamType)
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -111,7 +111,7 @@ class ShellUtil {
                 String s
                 try {
                     while ((s = bufferedReader.readLine()) != null) {
-                        GLog.d(TAG, "print " + streamType + " shell message: " + s)
+                        GLog.d("print " + streamType + " shell message: " + s)
                     }
                 } catch (IOException e) {
                     e.printStackTrace()
@@ -122,7 +122,7 @@ class ShellUtil {
                         e.printStackTrace()
                     }
                 }
-                GLog.d(TAG, "exit print " + streamType + " shell message thread()")
+                GLog.d("exit print " + streamType + " shell message thread()")
             }
         }).start()
     }

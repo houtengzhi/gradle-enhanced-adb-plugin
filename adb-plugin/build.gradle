@@ -1,10 +1,15 @@
 apply plugin: 'groovy'
 
+
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
 }
 
 group='com.yechy.gradleplugin'
-version='1.0.0'
+//version='1.0.0'
+version ='1.0.0-SNAPSHOT'
+
+//apply from: '../uploadToJcenter.gradle'
+apply from: '../uploadToMaven.gradle'
 
