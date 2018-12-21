@@ -1,5 +1,6 @@
 package com.yechy.gradleplugin.adb
 
+import com.android.build.gradle.api.BaseVariant
 import com.yechy.gradleplugin.adb.task.InitAdbTask
 import com.yechy.gradleplugin.adb.task.InstallApkTask
 import com.yechy.gradleplugin.adb.task.UninstallApkTask
@@ -44,8 +45,9 @@ class AdbPlugin implements Plugin<Project> {
         return task
     }
 
-    DefaultTask createUninstallTask() {
-        DefaultTask task = mProject.task('enhancedUninstall', type: UninstallApkTask)
+    DefaultTask createUninstallTask(BaseVariant variant) {
+        String variantName = variant.name.capitalize()
+        DefaultTask task = mProject.task("enhancedUninstall${variantName}", type: UninstallApkTask)
         task.group = 'enhanced adb'
         task.description = 'Uninstall apk'
         return task

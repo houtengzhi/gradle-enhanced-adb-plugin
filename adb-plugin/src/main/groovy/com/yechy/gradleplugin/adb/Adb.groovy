@@ -29,10 +29,10 @@ class Adb {
         ShellUtil.execCommand(command)
     }
 
-    static def deleteFile(File... files) {
+    static def deleteFile(String... filePaths) {
         String command
-        for (File file : files) {
-            command = "adb shell rm -rf ${file}"
+        for (String path : filePaths) {
+            command = "adb shell rm -rf ${path}"
             ShellUtil.execCommand(command)
         }
     }

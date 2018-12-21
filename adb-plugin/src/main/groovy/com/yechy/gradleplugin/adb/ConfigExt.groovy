@@ -4,4 +4,5 @@ class ConfigExt {
     boolean isSystemApp = true
     boolean reboot = false
     boolean debugged = false
+    String apkPrefix
 }

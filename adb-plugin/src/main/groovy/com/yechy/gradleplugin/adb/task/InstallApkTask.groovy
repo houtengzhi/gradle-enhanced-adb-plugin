@@ -19,7 +19,6 @@ class InstallApkTask extends DefaultTask {
         configExt = project.adbPlugin
         File apkFile = getApkFile(project)
         installApkFile(apkFile)
-
     }
 
     File getApkFile(Project project) {
@@ -50,6 +49,10 @@ class InstallApkTask extends DefaultTask {
 
         } else {
             Adb.installApk(apkFile.getAbsolutePath())
+        }
+
+        if (configExt.reboot) {
+            Adb.reboot()
         }
     }
 
