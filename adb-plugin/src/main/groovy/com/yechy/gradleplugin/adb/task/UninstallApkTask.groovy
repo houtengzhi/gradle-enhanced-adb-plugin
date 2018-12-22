@@ -1,17 +1,11 @@
 package com.yechy.gradleplugin.adb.task
 
-import com.android.build.gradle.api.BaseVariant
 import com.android.builder.testing.api.DeviceException
 import com.yechy.gradleplugin.adb.Adb
-import com.yechy.gradleplugin.adb.ConfigExt
-import org.gradle.api.DefaultTask
+import com.yechy.gradleplugin.adb.BaseApkTask
 import org.gradle.api.tasks.TaskAction
 
-class UninstallApkTask extends DefaultTask {
-
-    String applicationId
-    ConfigExt configExt
-    BaseVariant variant
+class UninstallApkTask extends BaseApkTask {
 
     @TaskAction
     def doUninstall() throws DeviceException{
@@ -24,10 +18,14 @@ class UninstallApkTask extends DefaultTask {
             String apkInstallPath = "/system/app/${configExt.apkPrefix}*"
             Adb.deleteFile(apkInstallPath)
 
-            String dataPath = "/data/data/${applicationId}"
+            String dataPath = "/data/data/${variant.applicationId}"
 
         } else {
-            Adb.uninstallApk(applicationId)
+            Adb.uninstallApk(variant.applicationId)
         }
+    }
+
+    def deleteOtherFile() {
+
     }
 }

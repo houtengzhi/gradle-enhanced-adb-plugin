@@ -1,35 +1,25 @@
 package com.yechy.gradleplugin.adb.task
 
 import com.yechy.gradleplugin.adb.Adb
-import com.yechy.gradleplugin.adb.ConfigExt
+import com.yechy.gradleplugin.adb.BaseApkTask
 import com.yechy.gradleplugin.adb.GLog
-import org.gradle.api.DefaultTask
-import org.gradle.api.Project
 import org.gradle.api.file.FileTree
 import org.gradle.api.tasks.TaskAction
 
-class InstallApkTask extends DefaultTask {
-
-    String assembleTaskName;
-
-    ConfigExt configExt;
+class InstallApkTask extends BaseApkTask {
 
     @TaskAction
     void doInstall() {
         configExt = project.adbPlugin
-        File apkFile = getApkFile(project)
+        File apkFile = getApkFile()
         installApkFile(apkFile)
     }
 
-    File getApkFile(Project project) {
+    File getApkFile() {
         File apk = null
-        project.android.applicationVariants.all {
-            variant ->
-                variant.outputs.all {
-                    output ->
-                        if (output.assemble.name == assembleTaskName) {
-                            apk = output.outputFile
-                        }
+        variant.outputs.all { output ->
+                if (output.name.endsWith('.apk')) {
+                    apk = output.outputFile
                 }
         }
         return apk;
