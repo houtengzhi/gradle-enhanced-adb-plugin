@@ -37,6 +37,10 @@ class Adb {
         }
     }
 
+    static def run(String packageName) {
+        String command = "adb shell "
+    }
+
     static def reboot() {
         ShellUtil.execCommand("adb reboot")
     }

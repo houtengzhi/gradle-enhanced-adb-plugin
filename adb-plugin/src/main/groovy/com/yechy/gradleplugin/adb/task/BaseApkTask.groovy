@@ -8,5 +8,10 @@ class BaseApkTask extends DefaultTask {
     BaseVariant variant
     String deviceId
 
+    protected connectDevice() {
+        Adb.waitForDevice()
+        Adb.root()
+        Adb.remount()
+    }
 
 }

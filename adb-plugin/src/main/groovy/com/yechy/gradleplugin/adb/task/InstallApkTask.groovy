@@ -12,13 +12,14 @@ class InstallApkTask extends BaseApkTask {
     void doInstall() {
         configExt = project.adbPlugin
         File apkFile = getApkFile()
+        connectDevice()
         installApkFile(apkFile)
     }
 
     File getApkFile() {
         File apk = null
         variant.outputs.all { output ->
-                if (output.name.endsWith('.apk')) {
+                if (output.outputFile.getName().endsWith('.apk')) {
                     apk = output.outputFile
                 }
         }
@@ -27,7 +28,7 @@ class InstallApkTask extends BaseApkTask {
 
     void installApkFile(File apkFile) {
         if (apkFile == null || !apkFile.exists()) {
-            GLog.e(project.getLogger(), "Apk not exist")
+            GLog.e(project.getLogger(), "${apkFile.getAbsolutePath()} not exist")
             return
         }
 
