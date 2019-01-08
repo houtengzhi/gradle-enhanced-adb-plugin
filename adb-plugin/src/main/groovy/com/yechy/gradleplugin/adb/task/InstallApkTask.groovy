@@ -19,9 +19,9 @@ class InstallApkTask extends BaseApkTask {
     File getApkFile() {
         File apk = null
         variant.outputs.all { output ->
-                if (output.outputFile.getName().endsWith('.apk')) {
-                    apk = output.outputFile
-                }
+            if (output.outputFile.getName().endsWith('.apk')) {
+                apk = output.outputFile
+            }
         }
         return apk;
     }
@@ -40,6 +40,9 @@ class InstallApkTask extends BaseApkTask {
 
         } else {
             Adb.installApk(apkFile.getAbsolutePath())
+            if (configExt.runAfterInstall) {
+                run()
+            }
         }
 
         if (configExt.reboot) {
@@ -58,7 +61,16 @@ class InstallApkTask extends BaseApkTask {
                 Adb.pushFile(file.getAbsolutePath(), '/vender/lib')
             }
         }
+    }
 
+    def run() {
+        if (configExt.launchActivity == null) {
+            GLog.e(project.getLogger(), "Launch activity has not been configured")
+            return
+        }
+
+        String component = "${variant.applicationId}/${configExt.launchActivity}"
+        Adb.run(component)
     }
 
 }

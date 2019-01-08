@@ -16,8 +16,9 @@ class AdbPlugin implements Plugin<Project> {
         this.mProject = project
 
         NamedDomainObjectContainer<DataDirExt> dataDirs = project.container(DataDirExt)
+        NamedDomainObjectContainer<CustomTaskExt> customTaskExts = project.container(CustomTaskExt)
 
-        ConfigExt adbPlugin = new ConfigExt(dataDirs)
+        ConfigExt adbPlugin = new ConfigExt(dataDirs, customTaskExts)
 
         project.extensions.add('adbPlugin', adbPlugin)
 

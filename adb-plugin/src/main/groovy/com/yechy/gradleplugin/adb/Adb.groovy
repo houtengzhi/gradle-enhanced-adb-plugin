@@ -37,8 +37,8 @@ class Adb {
         }
     }
 
-    static def run(String packageName) {
-        String command = "adb shell "
+    static def run(String componentName) {
+        String command = "adb shell am -start -n ${componentName}"
     }
 
     static def reboot() {
