@@ -5,6 +5,9 @@ class DataDirExt {
     String filePath
     boolean deleteWhenUninstall = false
 
+    DataDirExt() {
+    }
+
     DataDirExt(String name) {
         this.name = name
     }

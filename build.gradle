@@ -9,7 +9,7 @@ buildscript {
         maven {url 'http://192.168.1.227:8081/nexus/content/groups/public/' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0'
+        classpath 'com.android.tools.build:gradle:3.2.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         classpath 'com.yechy.gradleplugin:adb-plugin:1.0.0-SNAPSHOT'
@@ -34,3 +34,31 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+gradle.addBuildListener(new BuildListener() {
+    @Override
+    void buildStarted(Gradle gradle) {
+        println("[Adb] buildStarted")
+
+    }
+
+    @Override
+    void settingsEvaluated(Settings settings) {
+        println("[Adb] settingsEvaluated")
+    }
+
+    @Override
+    void projectsLoaded(Gradle gradle) {
+        println("[Adb] projectsLoaded")
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+        println("[Adb] projectsEvaluated")
+    }
+
+    @Override
+    void buildFinished(BuildResult result) {
+        println("[Adb] buildFinished")
+    }
+})
