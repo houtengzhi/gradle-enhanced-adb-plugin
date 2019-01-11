@@ -27,6 +27,7 @@ class AdbPlugin implements Plugin<Project> {
 
         project.afterEvaluate {
             GLog.d("project afterEvaluate")
+            GLog.debug = mProject.extensions.adbPlugin.debugged
             createCustomTask()
         }
 
@@ -57,12 +58,7 @@ class AdbPlugin implements Plugin<Project> {
 
     def createCustomTask() {
         def customTaskExts = mProject.extensions.adbPlugin.customTasks
-        customTaskExts.all {
-            GLog.d("println ${it.toString()}")
-        }
-        customTaskExts
         if (customTaskExts != null) {
-            GLog.d("customTaskExts size: ${customTaskExts.size()}")
             for (CustomTaskExt customTaskExt : customTaskExts) {
                 GLog.d("createCustomTask: ${customTaskExt.toString()}")
 
@@ -70,17 +66,22 @@ class AdbPlugin implements Plugin<Project> {
                 String group = customTaskExt.group == null ? 'enhanced adb' : customTaskExt.group
                 mProject.task(name, type: DefaultTask, group: group, description: customTaskExt.description)
                         .doFirst {
-                    if (customTaskExt.command != null) {
-                        ShellUtil.execCommand(customTaskExt.command)
+                    if (customTaskExt.commands != null) {
+                        customTaskExt.commands.each {
+                            ShellUtil.execCommand(it)
+                        }
                     }
 
                     if (customTaskExt.scriptPath != null) {
+                        File scriptFile = mProject.file(customTaskExt.scriptPath)
                         String command = ''
                         if (customTaskExt.executeProcedure != null) {
                             command = customTaskExt.executeProcedure + ' '
                         }
-                        command = command + customTaskExt.scriptPath
-                        ShellUtil.execCommand(command)
+                        if (scriptFile.exists()) {
+                            command = command + scriptFile.absolutePath
+                            ShellUtil.execCommand(command)
+                        }
                     }
                 }
             }

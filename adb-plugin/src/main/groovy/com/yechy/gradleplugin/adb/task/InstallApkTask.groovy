@@ -10,8 +10,11 @@ class InstallApkTask extends BaseApkTask {
 
     @TaskAction
     void doInstall() {
-        configExt = project.adbPlugin
         File apkFile = getApkFile()
+        if (apkFile == null || !apkFile.exists()) {
+            GLog.e(project.getLogger(), "Warn: ${apkFile.getName()} not exist.")
+            return
+        }
         connectDevice()
         installApkFile(apkFile)
     }
@@ -27,11 +30,6 @@ class InstallApkTask extends BaseApkTask {
     }
 
     void installApkFile(File apkFile) {
-        if (apkFile == null || !apkFile.exists()) {
-            GLog.e(project.getLogger(), "${apkFile.getAbsolutePath()} not exist")
-            return
-        }
-
         GLog.i("Start install ${apkFile.getAbsolutePath()}")
 
         if (configExt.isSystemApp) {
@@ -45,7 +43,7 @@ class InstallApkTask extends BaseApkTask {
             }
         }
 
-        if (configExt.reboot) {
+        if (configExt.rebootAfterInstall) {
             Adb.reboot()
         }
     }
@@ -64,6 +62,7 @@ class InstallApkTask extends BaseApkTask {
     }
 
     def run() {
+
         if (configExt.launchActivity == null) {
             GLog.e(project.getLogger(), "Launch activity has not been configured")
             return

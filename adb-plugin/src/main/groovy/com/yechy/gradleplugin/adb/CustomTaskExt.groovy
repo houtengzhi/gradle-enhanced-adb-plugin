@@ -2,7 +2,7 @@ package com.yechy.gradleplugin.adb
 
 class CustomTaskExt {
     final String name
-    String command
+    List<String> commands
     String scriptPath
     String executeProcedure
     String group
@@ -17,7 +17,7 @@ class CustomTaskExt {
     public String toString() {
         return "CustomTaskExt{" +
                 "name='" + name + '\'' +
-                ", command='" + command + '\'' +
+                ", commands='" + commands + '\'' +
                 ", scriptPath='" + scriptPath + '\'' +
                 ", executeProcedure='" + executeProcedure + '\'' +
                 ", group='" + group + '\'' +

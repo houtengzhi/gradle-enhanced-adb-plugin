@@ -8,7 +8,12 @@ class BaseApkTask extends DefaultTask {
     BaseVariant variant
     String deviceId
 
+
     protected connectDevice() {
+        configExt = project.adbPlugin
+        Adb.adb = configExt.adbPath
+        Adb.deviceId = configExt.deviceId
+        GLog.d("${configExt.toString()}")
         Adb.waitForDevice()
         Adb.root()
         Adb.remount()

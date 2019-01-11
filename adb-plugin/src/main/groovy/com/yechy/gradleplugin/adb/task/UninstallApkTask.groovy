@@ -11,7 +11,6 @@ class UninstallApkTask extends BaseApkTask {
 
     @TaskAction
     def doUninstall() throws DeviceException{
-        configExt = project.adbPlugin
         connectDevice()
         uninstall()
     }

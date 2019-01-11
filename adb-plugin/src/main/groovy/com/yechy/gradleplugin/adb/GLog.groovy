@@ -5,7 +5,7 @@ import org.gradle.api.logging.Logger
 class GLog {
 
     static final String TAG = "[EnhancedAdb]"
-    static boolean debug = true
+    static boolean debug = false
 
     static def d(String message) {
         if (debug) {
