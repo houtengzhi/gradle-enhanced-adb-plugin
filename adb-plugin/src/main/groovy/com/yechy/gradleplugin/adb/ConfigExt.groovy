@@ -1,5 +1,6 @@
 package com.yechy.gradleplugin.adb
 
+import org.gradle.api.Action
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 
@@ -12,6 +13,7 @@ class ConfigExt {
     String launchActivity
     String adbPath
     String deviceId
+    JniLibExt jniLib
 
     NamedDomainObjectContainer<DataDirExt> dataDirs
     NamedDomainObjectContainer<CustomTaskExt> customTasks
@@ -19,11 +21,7 @@ class ConfigExt {
     ConfigExt(Project project) {
         this.dataDirs = project.container(DataDirExt)
         this.customTasks = project.container(CustomTaskExt)
-    }
-
-    ConfigExt(NamedDomainObjectContainer<DataDirExt> dataDirs, NamedDomainObjectContainer<CustomTaskExt> customTaskExts) {
-        this.dataDirs = dataDirs
-        this.customTasks = customTaskExts
+        this.jniLib = project.objects.newInstance(JniLibExt)
     }
 
     def dataDirs(Closure closure) {
@@ -32,6 +30,10 @@ class ConfigExt {
 
     def customTasks(Closure closure) {
         customTasks.configure(closure)
+    }
+
+    void jniLib(Action<? super JniLibExt> action) {
+        action.execute(jniLib)
     }
 
 

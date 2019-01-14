@@ -49,14 +49,17 @@ class InstallApkTask extends BaseApkTask {
     }
 
     def installLibFile(File apkFile) {
+        String abi = configExt.jniLib.abi
+        String installPath = configExt.jniLib.installPath
 
         FileTree apkTree = project.zipTree(apkFile)
 
-        GLog.d("Shared library:\n")
+        GLog.d("Copy shared library:")
+        GLog.d("${configExt.jniLib.toString()}")
         apkTree.each { File file ->
-            GLog.d("${file.getAbsolutePath()}")
-            if (file.isFile() && file.name.endsWith('.so')) {
-                Adb.pushFile(file.getAbsolutePath(), '/vender/lib')
+            GLog.d("${file.getAbsolutePath()},  ${file.getParent()},  ${file.name}")
+            if (file.isFile() && file.name.endsWith('.so') && abi.equals(file.getParent())) {
+                Adb.pushFile(file.getAbsolutePath(), installPath)
             }
         }
     }
