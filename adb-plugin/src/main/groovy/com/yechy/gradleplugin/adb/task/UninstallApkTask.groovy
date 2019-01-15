@@ -3,7 +3,7 @@ package com.yechy.gradleplugin.adb.task
 import com.android.builder.testing.api.DeviceException
 import com.yechy.gradleplugin.adb.Adb
 import com.yechy.gradleplugin.adb.BaseApkTask
-import com.yechy.gradleplugin.adb.DataDirExt
+import com.yechy.gradleplugin.adb.extension.DataDirExt
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.tasks.TaskAction
 

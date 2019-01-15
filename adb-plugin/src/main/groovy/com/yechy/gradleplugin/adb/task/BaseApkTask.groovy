@@ -1,6 +1,7 @@
 package com.yechy.gradleplugin.adb
 
 import com.android.build.gradle.api.BaseVariant
+import com.yechy.gradleplugin.adb.extension.ConfigExt
 import org.gradle.api.DefaultTask
 
 class BaseApkTask extends DefaultTask {

@@ -1,4 +1,4 @@
-package com.yechy.gradleplugin.adb
+package com.yechy.gradleplugin.adb.extension
 
 class JniLibExt {
     String abi

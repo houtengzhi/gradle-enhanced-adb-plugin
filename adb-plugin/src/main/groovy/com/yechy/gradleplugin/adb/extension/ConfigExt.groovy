@@ -1,4 +1,4 @@
-package com.yechy.gradleplugin.adb
+package com.yechy.gradleplugin.adb.extension
 
 import org.gradle.api.Action
 import org.gradle.api.NamedDomainObjectContainer

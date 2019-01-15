@@ -1,6 +1,8 @@
 package com.yechy.gradleplugin.adb
 
 import com.android.build.gradle.api.BaseVariant
+import com.yechy.gradleplugin.adb.extension.ConfigExt
+import com.yechy.gradleplugin.adb.extension.CustomTaskExt
 import com.yechy.gradleplugin.adb.task.InstallApkTask
 import com.yechy.gradleplugin.adb.task.UninstallApkTask
 import org.gradle.api.DefaultTask
