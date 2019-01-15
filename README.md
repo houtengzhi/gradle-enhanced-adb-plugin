@@ -1,10 +1,10 @@
-## enhanced-adb-plugin
+# enhanced-adb-plugin
 >Adb command gradle插件
 
-#### 更新
+### 更新
  1.0.0
 
-#### 集成
+### 集成
 
 在项目根目录下的build.gradle文件中添加
 ```
@@ -23,7 +23,7 @@ buildscript {
 apply plugin: 'com.yechy.adb-plugin'
 ```
 
-#### 配置项
+### 配置项
 
 |参数名|默认值|描述|
 |-----|------|---|
@@ -31,7 +31,7 @@ apply plugin: 'com.yechy.adb-plugin'
 |rebootAfterInstall|false|安装后是否重启设备|
 |debugged|false|是否设置调式模式|
 |apkPrefix|null|APK文件名前缀，卸载系统app时必填|
-|launchActivity|null|自动运行启动的activity|
+|launchActivity|null|自动运行启动的activity，需要填写完整包名|
 |runAfterInstall|false|安装后是否自动运行|
 |jniLib|null|依赖的动态库配置|
 |dataDirs|null|数据目录,可配多个|
@@ -53,8 +53,8 @@ jniLib属性下配置参数
   </tr>
   <tr>
     <td>installPath</td>
-    <td>null</td>
-    <td>动态库文件安装路径</td>
+    <td>/vendor/lib</td>
+    <td>动态库文件安装路径，仅对系统app有效</td>
   </tr>
 </table>
 
@@ -111,7 +111,7 @@ customTasks属性下配置参数：
 </table>
 
 
-配置项demo如下：
+示例如下：
 ```
 adbPlugin {
     isSystemApp = true

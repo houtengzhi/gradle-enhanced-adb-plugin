@@ -8,9 +8,9 @@ dependencies {
 }
 
 group='com.yechy.gradleplugin'
-//version='1.0.0'
-version ='1.0.0-SNAPSHOT'
+version='1.0.1'
+//version ='1.0.1-SNAPSHOT'
 
-//apply from: '../uploadToJcenter.gradle'
-apply from: '../uploadToMaven.gradle'
+apply from: '../uploadToJcenter.gradle'
+//apply from: '../uploadToMaven.gradle'
 
