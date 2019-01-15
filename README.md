@@ -1,3 +1,5 @@
+[ ![Download](https://api.bintray.com/packages/houtengzhi/maven/adb-plugin/images/download.svg) ](https://bintray.com/houtengzhi/maven/adb-plugin/_latestVersion)
+
 # enhanced-adb-plugin
 >Adb command gradle插件
 
