@@ -3,10 +3,6 @@ package com.yechy.gradleplugin.adb
 import org.gradle.internal.os.OperatingSystem
 
 /**
- * @author yechy
- * @date 2018/7/17
- * @email yechengyun@ahgxtx.com
- * @describe 执行shell命令
  *
  */
 
